@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#b51f2e" />
+    <meta
+      name="description"
+      content="高见——面向公关人员的企业高管 IP 策略生成原型。"
+    />
+    <title>高见｜企业高管 IP 策略生成器</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <noscript>请启用 JavaScript 以体验《高见》。</noscript>
+
+    <main id="app" class="app-shell">
+      <div class="grain" aria-hidden="true"></div>
+
+      <nav class="top-rail" aria-label="杂志导航">
+        <button id="brand-home" class="wordmark" type="button" aria-label="返回封面">高见</button>
+        <div class="issue-mark">EXECUTIVE VOICE · ISSUE 01</div>
+        <div id="page-count" class="page-count" aria-live="polite">01 / 06</div>
+      </nav>
+
+      <div id="book" class="book" aria-live="polite">
+        <section class="page page-cover is-active" data-page="0" aria-label="高见封面">
+          <img
+            class="cover-art"
+            src="assets/founder-cover.png"
+            alt="红黑新闻纸丝网印刷风格的虚构科技创始人"
+          />
+          <div class="cover-shade" aria-hidden="true"></div>
+          <div class="cover-masthead" aria-hidden="true">高见</div>
+          <div class="cover-copy">
+            <p class="cover-index">THE EXECUTIVE ISSUE / 2026</p>
+            <h1>高见，<br />值得被看见。</h1>
+            <p class="cover-deck">把高管的履历、判断与经验，转化为持续的公众影响力。</p>
+          </div>
+          <div class="cover-lines">
+            <span>人物定位</span>
+            <span>观点资产</span>
+            <span>内容策略</span>
+          </div>
+          <button class="swipe-cue" type="button" data-next>
+            <span>向右滑动阅读</span>
+            <svg viewBox="0 0 48 16" aria-hidden="true"><path d="M1 8h43M37 2l7 6-7 6" /></svg>
+          </button>
+        </section>
+
+        <section class="page page-form page-paper" data-page="1" aria-label="人物档案">
+          <div class="page-rule"><span>PROFILE</span><span>人物档案</span><span>02</span></div>
+          <div class="editorial-heading">
+            <p>先认识这个人，<br />再定义他的影响力。</p>
+            <h2>人物<br />档案</h2>
+          </div>
+
+          <form id="profile-form" class="form-grid" novalidate>
+            <label class="field field-short">
+              <span class="field-no">01</span>
+              <span class="field-label">高管姓名</span>
+              <input name="name" type="text" placeholder="例如：周屿" autocomplete="name" required />
+            </label>
+            <label class="field field-short">
+              <span class="field-no">02</span>
+              <span class="field-label">现任职位</span>
+              <input name="role" type="text" placeholder="例如：科技公司创始人" required />
+            </label>
+            <label class="field field-wide">
+              <span class="field-no">03</span>
+              <span class="field-label">个人履历</span>
+              <textarea
+                name="resume"
+                rows="5"
+                placeholder="用两三句话写下最值得被记住的经历与成绩。"
+                required
+              ></textarea>
+            </label>
+          </form>
+
+          <div class="page-actions">
+            <button id="load-example" class="link-action" type="button">载入示例档案</button>
+            <button class="next-action" type="button" data-validate="profile-form" data-goto="2">
+              下一页 <span>→</span>
+            </button>
+          </div>
+        </section>
+
+        <section class="page page-form page-red" data-page="2" aria-label="传播任务">
+          <div class="page-rule rule-light"><span>BRIEF</span><span>传播任务</span><span>03</span></div>
+          <div class="editorial-heading heading-light">
+            <p>真正有穿透力的表达，<br />来自清晰的商业目标。</p>
+            <h2>传播<br />任务</h2>
+          </div>
+
+          <form id="brief-form" class="form-grid form-grid-compact" novalidate>
+            <label class="field field-inverse field-short">
+              <span class="field-no">04</span>
+              <span class="field-label">行业信息</span>
+              <input name="industry" type="text" placeholder="例如：人工智能 / 企业服务" required />
+            </label>
+            <label class="field field-inverse field-short">
+              <span class="field-no">05</span>
+              <span class="field-label">业务目标</span>
+              <input name="goal" type="text" placeholder="例如：建立行业影响力" required />
+            </label>
+            <label class="field field-inverse field-wide">
+              <span class="field-no">06</span>
+              <span class="field-label">行业个人观点</span>
+              <textarea
+                name="viewpoint"
+                rows="4"
+                placeholder="写下一句最能代表这位高管判断力的观点。"
+                required
+              ></textarea>
+            </label>
+            <label class="field field-inverse field-wide">
+              <span class="field-no">07</span>
+              <span class="field-label">目标受众</span>
+              <input name="audience" type="text" placeholder="例如：企业管理者、创业者与投资人" required />
+            </label>
+          </form>
+
+          <div class="page-actions actions-light">
+            <button class="link-action" type="button" data-goto="1">返回修改</button>
+            <button id="generate-button" class="next-action action-ivory" type="button">
+              生成高见 <span>↗</span>
+            </button>
+          </div>
+        </section>
+
+        <section class="page page-process page-ink" data-page="3" aria-label="策略生成过程">
+          <div class="page-rule rule-light"><span>PROCESS</span><span>策略生成</span><span>04</span></div>
+          <div class="process-stage">
+            <p class="process-overline">BUILDING AN EXECUTIVE VOICE</p>
+            <h2>让履历成为观点，<br />让观点成为影响力。</h2>
+            <div class="signal-orbit" aria-hidden="true">
+              <div class="orbit orbit-a"></div>
+              <div class="orbit orbit-b"></div>
+              <div class="orbit orbit-c"></div>
+              <span>见</span>
+            </div>
+            <ol id="process-list" class="process-list">
+              <li class="is-running"><span>01</span>提炼人物资产</li>
+              <li><span>02</span>识别观点锋芒</li>
+              <li><span>03</span>构建内容方向</li>
+            </ol>
+          </div>
+          <button id="view-result" class="result-action" type="button" hidden>
+            查看策略结果 <span>→</span>
+          </button>
+        </section>
+
+        <section class="page page-result page-paper" data-page="4" aria-label="高管 IP 定位结果">
+          <div class="page-rule"><span>POSITIONING</span><span>高管 IP 蓝图</span><span>05</span></div>
+          <div class="result-lead">
+            <p><span id="result-person">—</span> / EXECUTIVE VOICE</p>
+            <h2 id="positioning" contenteditable="true" spellcheck="false">—</h2>
+          </div>
+
+          <section class="result-block tag-block">
+            <div class="block-title"><span>01</span><h3>三个记忆标签</h3></div>
+            <div id="memory-tags" class="memory-tags"></div>
+          </section>
+
+          <section class="result-block direction-block">
+            <div class="block-title"><span>02</span><h3>三个长期内容方向</h3></div>
+            <ol id="content-directions" class="direction-list"></ol>
+          </section>
+
+          <div class="result-footer">
+            <span>点击文字可直接修改</span>
+            <div>
+              <button type="button" data-regenerate="positioning">重新生成本页</button>
+              <button type="button" data-copy>复制全部</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="page page-topics page-paper" data-page="5" aria-label="三天公众号选题">
+          <div class="page-rule"><span>EDITORIAL PLAN</span><span>三天公众号选题</span><span>06</span></div>
+          <div class="topics-heading">
+            <h2>三天，<br />建立一个清晰的声音。</h2>
+            <p>每个选题均包含传播角度、开篇 Hook 与三点大纲。</p>
+          </div>
+          <div id="topic-list" class="topic-list"></div>
+          <div class="result-footer topics-footer">
+            <span>点击文字可直接修改</span>
+            <div>
+              <button type="button" data-regenerate="topics">重新生成本页</button>
+              <button type="button" data-copy>复制全部</button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="bottom-rail" aria-label="页面控制">
+        <button id="prev-page" type="button" aria-label="上一页">←</button>
+        <div class="progress-track" aria-hidden="true"><i id="progress-bar"></i></div>
+        <button id="next-page" type="button" aria-label="下一页">→</button>
+      </div>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite">已复制完整方案</div>
+    <script src="app.js"></script>
+  </body>
+</html>
