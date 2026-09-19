@@ -69,6 +69,8 @@ function goToPage(index) {
   const safeIndex = Math.max(0, Math.min(pages.length - 1, index));
   if (safeIndex === currentPage) return;
 
+  app.classList.toggle("turning-back", safeIndex < currentPage);
+
   pages[currentPage].classList.remove("is-active");
   pages[currentPage].classList.add("was-active");
   const previous = currentPage;
@@ -85,6 +87,7 @@ function goToPage(index) {
 function updateChrome() {
   const darkPages = new Set([0, 2, 3]);
   app.classList.toggle("is-dark", darkPages.has(currentPage));
+  app.classList.toggle("is-cover", currentPage === 0);
   pageCount.textContent = `${String(currentPage + 1).padStart(2, "0")} / ${String(pages.length).padStart(2, "0")}`;
   progressBar.style.width = `${((currentPage + 1) / pages.length) * 100}%`;
   prevButton.disabled = currentPage === 0;

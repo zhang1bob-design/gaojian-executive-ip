@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#b51f2e" />
+    <meta name="theme-color" content="#64131d" />
     <meta
       name="description"
-      content="高见——面向公关人员的企业高管 IP 策略生成原型。"
+      content="高见——面向公关与品牌团队的高管 IP 公众号选题生成器。"
     />
-    <title>高见｜企业高管 IP 策略生成器</title>
+    <title>高见｜高管 IP 公众号选题生成器</title>
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -28,32 +28,34 @@
         <section class="page page-cover is-active" data-page="0" aria-label="高见封面">
           <img
             class="cover-art"
-            src="assets/founder-cover.png"
-            alt="红黑新闻纸丝网印刷风格的虚构科技创始人"
+            src="assets/founder-cover-v2.png"
+            alt="酒红色影棚背景中的虚构科技公司创始人"
           />
           <div class="cover-shade" aria-hidden="true"></div>
-          <div class="cover-masthead" aria-hidden="true">高见</div>
+          <div class="cover-masthead">高见</div>
+          <p class="cover-subhead">EXECUTIVE IP × WECHAT EDITORIAL</p>
           <div class="cover-copy">
-            <p class="cover-index">THE EXECUTIVE ISSUE / 2026</p>
-            <h1>高见，<br />值得被看见。</h1>
-            <p class="cover-deck">把高管的履历、判断与经验，转化为持续的公众影响力。</p>
+            <p class="cover-index">FOR PR &amp; BRAND TEAMS / 2026</p>
+            <p class="cover-product">高管 IP 公众号选题生成器</p>
+            <h1>把高管的判断，<br />变成值得传播的内容。</h1>
+            <p class="cover-deck">输入履历、行业观点与业务目标，生成高管 IP 定位及可直接使用的公众号选题。</p>
           </div>
           <div class="cover-lines">
-            <span>人物定位</span>
-            <span>观点资产</span>
-            <span>内容策略</span>
+            <span><b>01</b> IP 定位</span>
+            <span><b>02</b> 记忆标签</span>
+            <span><b>03</b> 三天选题</span>
           </div>
           <button class="swipe-cue" type="button" data-next>
-            <span>向右滑动阅读</span>
+            <span>开始生成公众号选题</span>
             <svg viewBox="0 0 48 16" aria-hidden="true"><path d="M1 8h43M37 2l7 6-7 6" /></svg>
           </button>
         </section>
 
         <section class="page page-form page-paper" data-page="1" aria-label="人物档案">
-          <div class="page-rule"><span>PROFILE</span><span>人物档案</span><span>02</span></div>
+          <div class="page-rule"><span>STEP 01 / PROFILE</span><span>填写高管信息</span><span>02</span></div>
           <div class="editorial-heading">
-            <p>先认识这个人，<br />再定义他的影响力。</p>
-            <h2>人物<br />档案</h2>
+            <p>提炼高管 IP 的第一步，<br />是找到最值得被记住的经历。</p>
+            <h2>高管档案</h2>
           </div>
 
           <form id="profile-form" class="form-grid" novalidate>
@@ -88,10 +90,10 @@
         </section>
 
         <section class="page page-form page-red" data-page="2" aria-label="传播任务">
-          <div class="page-rule rule-light"><span>BRIEF</span><span>传播任务</span><span>03</span></div>
+          <div class="page-rule rule-light"><span>STEP 02 / BRIEF</span><span>定义公众号内容任务</span><span>03</span></div>
           <div class="editorial-heading heading-light">
-            <p>真正有穿透力的表达，<br />来自清晰的商业目标。</p>
-            <h2>传播<br />任务</h2>
+            <p>告诉我们要影响谁、<br />希望建立怎样的行业认知。</p>
+            <h2>内容任务</h2>
           </div>
 
           <form id="brief-form" class="form-grid form-grid-compact" novalidate>
@@ -153,7 +155,7 @@
         </section>
 
         <section class="page page-result page-paper" data-page="4" aria-label="高管 IP 定位结果">
-          <div class="page-rule"><span>POSITIONING</span><span>高管 IP 蓝图</span><span>05</span></div>
+          <div class="page-rule"><span>POSITIONING</span><span>高管 IP 定位方案</span><span>05</span></div>
           <div class="result-lead">
             <p><span id="result-person">—</span> / EXECUTIVE VOICE</p>
             <h2 id="positioning" contenteditable="true" spellcheck="false">—</h2>
@@ -179,10 +181,10 @@
         </section>
 
         <section class="page page-topics page-paper" data-page="5" aria-label="三天公众号选题">
-          <div class="page-rule"><span>EDITORIAL PLAN</span><span>三天公众号选题</span><span>06</span></div>
+          <div class="page-rule"><span>WECHAT EDITORIAL PLAN</span><span>公众号三天选题</span><span>06</span></div>
           <div class="topics-heading">
-            <h2>三天，<br />建立一个清晰的声音。</h2>
-            <p>每个选题均包含传播角度、开篇 Hook 与三点大纲。</p>
+            <h2>三天公众号选题，<br />建立高管的内容辨识度。</h2>
+            <p>每个选题包含传播角度、开篇 Hook 与三点写作大纲。</p>
           </div>
           <div id="topic-list" class="topic-list"></div>
           <div class="result-footer topics-footer">
