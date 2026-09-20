@@ -9,6 +9,8 @@ const briefForm = document.querySelector("#brief-form");
 const processItems = [...document.querySelectorAll("#process-list li")];
 const viewResultButton = document.querySelector("#view-result");
 const toast = document.querySelector("#toast");
+const proofStamp = document.querySelector(".proof-stamp");
+const bottomRail = document.querySelector(".bottom-rail");
 
 let currentPage = 0;
 let strategy = null;
@@ -16,6 +18,13 @@ let positioningVariant = 0;
 let topicVariant = 0;
 let touchStartX = 0;
 let touchStartY = 0;
+let touchCurrentX = 0;
+let touchCurrentY = 0;
+let draggedPage = null;
+let peekedPage = null;
+let swipeDirection = 0;
+let swipeBlocked = false;
+let pageTurnTimer = 0;
 
 const sample = {
   name: "周屿",
@@ -81,17 +90,35 @@ function goToPage(index) {
   });
   pages[currentPage].classList.add("is-active");
   pages[currentPage].scrollTop = 0;
+  pages.forEach((page) => page.classList.remove("is-peeking"));
+  updatePageAccessibility();
   updateChrome();
+
+  window.clearTimeout(pageTurnTimer);
+  pageTurnTimer = window.setTimeout(() => {
+    pages[previous].classList.remove("was-active");
+  }, 760);
 }
 
 function updateChrome() {
-  const darkPages = new Set([0, 2, 3]);
+  const darkPages = new Set([0, 3]);
   app.classList.toggle("is-dark", darkPages.has(currentPage));
   app.classList.toggle("is-cover", currentPage === 0);
+  app.classList.toggle("has-primary-action", [1, 2, 3].includes(currentPage));
   pageCount.textContent = `${String(currentPage + 1).padStart(2, "0")} / ${String(pages.length).padStart(2, "0")}`;
   progressBar.style.width = `${((currentPage + 1) / pages.length) * 100}%`;
   prevButton.disabled = currentPage === 0;
-  nextButton.disabled = currentPage === pages.length - 1 || currentPage === 3;
+  nextButton.disabled = currentPage === pages.length - 1 || [1, 2, 3].includes(currentPage);
+  bottomRail.inert = currentPage === 0;
+  bottomRail.setAttribute("aria-hidden", currentPage === 0 ? "true" : "false");
+}
+
+function updatePageAccessibility() {
+  pages.forEach((page, index) => {
+    const active = index === currentPage;
+    page.inert = !active;
+    page.setAttribute("aria-hidden", active ? "false" : "true");
+  });
 }
 
 function validateAndGo(formId, target) {
@@ -119,18 +146,102 @@ document.addEventListener("keydown", (event) => {
 });
 
 document.querySelector("#book").addEventListener("touchstart", (event) => {
-  touchStartX = event.changedTouches[0].screenX;
-  touchStartY = event.changedTouches[0].screenY;
+  touchStartX = event.touches[0].clientX;
+  touchStartY = event.touches[0].clientY;
+  touchCurrentX = touchStartX;
+  touchCurrentY = touchStartY;
+  draggedPage = null;
+  peekedPage = null;
+  swipeDirection = 0;
+  swipeBlocked = Boolean(event.target.closest("input, textarea, button, [contenteditable='true']"));
 }, { passive: true });
 
-document.querySelector("#book").addEventListener("touchend", (event) => {
-  if (event.target.closest("input, textarea, button, [contenteditable='true']")) return;
-  const deltaX = event.changedTouches[0].screenX - touchStartX;
-  const deltaY = event.changedTouches[0].screenY - touchStartY;
-  if (Math.abs(deltaX) < 65 || Math.abs(deltaX) < Math.abs(deltaY) * 1.3) return;
-  if (deltaX > 0 && currentPage < pages.length - 1 && currentPage !== 3) goToPage(currentPage + 1);
-  if (deltaX < 0 && currentPage > 0) goToPage(currentPage - 1);
-}, { passive: true });
+document.querySelector("#book").addEventListener("touchmove", (event) => {
+  if (swipeBlocked) return;
+  touchCurrentX = event.touches[0].clientX;
+  touchCurrentY = event.touches[0].clientY;
+  const deltaX = touchCurrentX - touchStartX;
+  const deltaY = touchCurrentY - touchStartY;
+
+  if (!swipeDirection) {
+    if (Math.abs(deltaX) < 10 && Math.abs(deltaY) < 10) return;
+    if (Math.abs(deltaX) < Math.abs(deltaY) * 1.25) {
+      swipeBlocked = true;
+      return;
+    }
+    swipeDirection = deltaX > 0 ? 1 : -1;
+    app.classList.toggle("turning-back", swipeDirection < 0);
+    const target = currentPage + swipeDirection;
+    const canMove = target >= 0 && target < pages.length && !(currentPage === 3 && swipeDirection > 0);
+    if (!canMove) {
+      swipeBlocked = true;
+      return;
+    }
+    draggedPage = pages[currentPage];
+    peekedPage = pages[target];
+    draggedPage.classList.add("is-dragging");
+    peekedPage.classList.add("is-peeking");
+  }
+
+  if (Math.sign(deltaX) !== swipeDirection) return;
+  event.preventDefault();
+  const width = document.querySelector("#book").clientWidth;
+  const progress = Math.min(1, Math.abs(deltaX) / width);
+  const rotation = swipeDirection > 0 ? -4 * progress : 4 * progress;
+  draggedPage.style.transform = `translate3d(${deltaX}px, 0, 0) rotateY(${rotation}deg)`;
+}, { passive: false });
+
+document.querySelector("#book").addEventListener("touchend", finishSwipe, { passive: true });
+document.querySelector("#book").addEventListener("touchcancel", finishSwipe, { passive: true });
+
+function finishSwipe() {
+  if (!draggedPage) return;
+  const deltaX = touchCurrentX - touchStartX;
+  const threshold = Math.min(92, document.querySelector("#book").clientWidth * .22);
+  const shouldTurn = Math.abs(deltaX) >= threshold;
+  const outgoing = draggedPage;
+  const target = currentPage + swipeDirection;
+
+  outgoing.classList.remove("is-dragging");
+  outgoing.style.transition = "transform .42s var(--ease-page)";
+
+  const didTurn = shouldTurn && (swipeDirection > 0 ? advanceFromSwipe() : (goToPage(target), true));
+
+  if (didTurn) {
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      outgoing.style.transform = "";
+    }));
+  } else {
+    if (peekedPage) peekedPage.classList.remove("is-peeking");
+    outgoing.style.transform = "translate3d(0, 0, 0)";
+  }
+
+  window.setTimeout(() => {
+    outgoing.style.transition = "";
+    outgoing.style.transform = "";
+    if (!didTurn) outgoing.classList.add("is-active");
+  }, 460);
+
+  draggedPage = null;
+  peekedPage = null;
+  swipeDirection = 0;
+}
+
+function advanceFromSwipe() {
+  if (currentPage === 1) {
+    if (!profileForm.reportValidity()) return false;
+    goToPage(2);
+    return true;
+  }
+  if (currentPage === 2) {
+    if (!profileForm.reportValidity() || !briefForm.reportValidity()) return false;
+    runGeneration();
+    return true;
+  }
+  if (currentPage === 3 || currentPage >= pages.length - 1) return false;
+  goToPage(currentPage + 1);
+  return true;
+}
 
 document.querySelector("#load-example").addEventListener("click", () => {
   Object.entries(sample).forEach(([key, value]) => {
@@ -140,11 +251,17 @@ document.querySelector("#load-example").addEventListener("click", () => {
   showToast("示例档案已载入");
 });
 
-document.querySelector("#generate-button").addEventListener("click", async () => {
+document.querySelector("#generate-button").addEventListener("click", () => {
   if (!profileForm.reportValidity() || !briefForm.reportValidity()) return;
+  runGeneration();
+});
+
+async function runGeneration() {
   positioningVariant = 0;
   topicVariant = 0;
   goToPage(3);
+  app.classList.remove("is-complete");
+  proofStamp.textContent = "选题编校中";
   viewResultButton.hidden = true;
   processItems.forEach((item, index) => {
     item.classList.remove("is-running", "is-done");
@@ -160,8 +277,11 @@ document.querySelector("#generate-button").addEventListener("click", async () =>
   }
   strategy = buildStrategy(data);
   renderAll();
+  app.classList.add("is-complete");
+  proofStamp.textContent = "选题编校完成";
   viewResultButton.hidden = false;
-});
+  showToast("选题编校完成");
+}
 
 viewResultButton.addEventListener("click", () => goToPage(4));
 
@@ -275,10 +395,10 @@ function renderPositioning() {
   document.querySelector("#result-person").textContent = `${strategy.data.name} · ${strategy.data.role}`;
   document.querySelector("#positioning").textContent = strategy.positioning;
   document.querySelector("#memory-tags").replaceChildren(
-    ...strategy.tags.map((tag) => createEditable("div", "memory-tag", tag))
+    ...strategy.tags.map((tag, index) => createEditable("div", "memory-tag", tag, `记忆标签 ${index + 1}，可直接编辑`))
   );
   document.querySelector("#content-directions").replaceChildren(
-    ...strategy.directions.map((direction) => createEditable("li", "", direction))
+    ...strategy.directions.map((direction, index) => createEditable("li", "", direction, `长期内容方向 ${index + 1}，可直接编辑`))
   );
 }
 
@@ -293,14 +413,14 @@ function renderTopics() {
 
       const content = document.createElement("div");
       content.className = "topic-content";
-      content.append(createEditable("h3", "topic-title", topic.title));
+      content.append(createEditable("h3", "topic-title", topic.title, `第 ${index + 1} 天选题标题，可直接编辑`));
 
       const meta = document.createElement("div");
       meta.className = "topic-meta";
       meta.append(
-        makeTopicRow("角度", createEditable("p", "", topic.angle)),
-        makeTopicRow("HOOK", createEditable("p", "", topic.hook)),
-        makeTopicRow("大纲", makeOutline(topic.outline))
+        makeTopicRow("角度", createEditable("p", "", topic.angle, `第 ${index + 1} 天传播角度，可直接编辑`)),
+        makeTopicRow("开篇", createEditable("p", "", topic.hook, `第 ${index + 1} 天开篇 Hook，可直接编辑`)),
+        makeTopicRow("大纲", makeOutline(topic.outline, index))
       );
       content.append(meta);
       article.append(number, content);
@@ -318,9 +438,12 @@ function makeTopicRow(label, body) {
   return row;
 }
 
-function makeOutline(items) {
+function makeOutline(items, topicIndex) {
   const list = document.createElement("ol");
   list.contentEditable = "true";
+  list.setAttribute("role", "textbox");
+  list.setAttribute("aria-label", `第 ${topicIndex + 1} 天写作大纲，可直接编辑`);
+  list.setAttribute("aria-multiline", "true");
   list.spellcheck = false;
   items.forEach((item) => {
     const li = document.createElement("li");
@@ -330,11 +453,13 @@ function makeOutline(items) {
   return list;
 }
 
-function createEditable(tag, className, text) {
+function createEditable(tag, className, text, label) {
   const element = document.createElement(tag);
   if (className) element.className = className;
   element.textContent = text;
   element.contentEditable = "true";
+  element.setAttribute("role", "textbox");
+  if (label) element.setAttribute("aria-label", label);
   element.spellcheck = false;
   return element;
 }
@@ -405,4 +530,5 @@ function showToast(message) {
   window.setTimeout(() => toast.classList.remove("is-visible"), 1700);
 }
 
+updatePageAccessibility();
 updateChrome();

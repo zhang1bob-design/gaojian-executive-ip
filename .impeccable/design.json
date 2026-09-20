@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-20T00:00:00+08:00",
+  "title": "Design System: 高见",
+  "extensions": {
+    "colorMeta": {
+      "oxblood": {
+        "role": "primary",
+        "displayName": "编辑酒红",
+        "canonical": "#a3152c",
+        "tonalRamp": ["#31060d", "#4f0a16", "#68101e", "#821226", "#a3152c", "#c33c52", "#df7181", "#f6dce1"]
+      },
+      "oxblood-deep": {
+        "role": "primary",
+        "displayName": "深酒红",
+        "canonical": "#68101e",
+        "tonalRamp": ["#240409", "#38060f", "#4f0a16", "#68101e", "#8b2434", "#b84f5e", "#df8d98", "#f5dfe2"]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "校样纸",
+        "canonical": "#f0ece2",
+        "tonalRamp": ["#24221e", "#3e3b35", "#5e5a51", "#817b70", "#aaa397", "#d2ccc1", "#f0ece2", "#fbf8f0"]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "油墨黑",
+        "canonical": "#12110f",
+        "tonalRamp": ["#12110f", "#292724", "#45413c", "#655f57", "#8a8277", "#b7afa3", "#ddd7cd", "#f5f2eb"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "中文观点标题", "purpose": "刊头、页面标题与定位观点。" },
+      "headline": { "displayName": "编辑标题", "purpose": "结果与选题标题。" },
+      "body": { "displayName": "操作正文", "purpose": "表单、说明、角度、开篇与大纲。" },
+      "label": { "displayName": "编辑批注", "purpose": "页码、字段编号与元数据。" }
+    },
+    "shadows": [
+      { "name": "paper-lift", "value": "10px 16px 42px rgba(20,4,8,.24)", "purpose": "封面信息校样悬在人物摄影之上。" },
+      { "name": "proof-lift", "value": "14px 18px 36px rgba(0,0,0,.34)", "purpose": "生成过程中的实体校样纸。" },
+      { "name": "page-turn", "value": "-24px 0 48px rgba(12,8,5,.24)", "purpose": "纸张正在翻动时的方向性深度。" }
+    ],
+    "motion": [
+      { "name": "page-ease", "value": "cubic-bezier(.16,.82,.24,1)", "purpose": "翻页与校样线的快速减速。" },
+      { "name": "page-turn", "value": "720ms", "purpose": "点击或键盘触发的整页翻动。" },
+      { "name": "drag-settle", "value": "420ms", "purpose": "触摸跟手后完成或回弹。" }
+    ],
+    "breakpoints": [
+      { "name": "two-column-form", "value": "560px" },
+      { "name": "desktop-magazine", "value": "760px" },
+      { "name": "short-mobile", "value": "max-height: 700px and max-width: 759px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "工作页的单一主要动作。",
+      "html": "<button class=\"ds-btn-primary\">生成公众号选题</button>",
+      "css": ".ds-btn-primary{min-height:48px;padding:0 16px;display:flex;align-items:center;justify-content:center;border:1px solid #12110f;border-radius:0;background:#12110f;color:#f8f3e8;font:800 12px/1.4 sans-serif}.ds-btn-primary:hover{filter:brightness(.94)}.ds-btn-primary:focus-visible{outline:3px solid #a3152c;outline-offset:3px}.ds-btn-primary:active{transform:translateY(1px)}"
+    },
+    {
+      "name": "Editorial Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "带编辑序号与规则线的中文输入字段。",
+      "html": "<label class=\"ds-field\"><span>01</span><b>高管姓名</b><input placeholder=\"例如：周屿\"></label>",
+      "css": ".ds-field{display:grid;grid-template-columns:30px 1fr;grid-template-areas:'no label' 'no control';padding:14px 0 18px;border-top:1px solid rgba(18,17,15,.28);color:#12110f}.ds-field>span{grid-area:no;color:#a3152c;font:850 9px/1.4 sans-serif}.ds-field>b{grid-area:label;margin-bottom:8px;font:760 12px/1.4 sans-serif}.ds-field>input{grid-area:control;border:0;border-radius:0;background:transparent;color:#12110f;font:480 15px/1.7 sans-serif;outline:0}.ds-field:focus-within{border-top:2px solid #a3152c}"
+    },
+    {
+      "name": "Topic Sheet",
+      "kind": "card",
+      "refersTo": "topic-sheet",
+      "description": "公众号选题的可编辑稿件单元。",
+      "html": "<article class=\"ds-topic\"><span>DAY 01</span><h3>AI 的价值不是取代人</h3><p>从高管的亲身判断切入。</p></article>",
+      "css": ".ds-topic{border-top:5px solid #12110f;border-radius:0;background:#fbf8f0;color:#12110f}.ds-topic>span{display:inline-block;padding:8px 11px;background:#a3152c;color:white;font:900 10px/1.4 sans-serif}.ds-topic>h3{margin:14px 15px;font:750 20px/1.5 serif}.ds-topic>p{margin:0;padding:0 15px 17px;color:#34312d;font:480 13px/1.78 sans-serif}.ds-topic:focus-within{outline:3px solid #a3152c;outline-offset:3px}"
+    },
+    {
+      "name": "Magazine Navigation",
+      "kind": "nav",
+      "description": "固定页码、进度和翻页控制。",
+      "html": "<nav class=\"ds-nav\"><button>上一页</button><i></i><button>下一页</button></nav>",
+      "css": ".ds-nav{display:grid;grid-template-columns:76px 1fr 76px;align-items:center;gap:12px;padding:9px 18px;border-top:1px solid rgba(18,17,15,.28);background:#f0ece2;color:#12110f}.ds-nav button{min-height:44px;border:1px solid currentColor;border-radius:0;background:transparent;font:800 10px/1.4 sans-serif}.ds-nav button:focus-visible{outline:3px solid #a3152c;outline-offset:3px}.ds-nav i{height:2px;background:currentColor;opacity:.3}"
+    },
+    {
+      "name": "Editorial Proof",
+      "kind": "custom",
+      "description": "把生成解释为编辑编校的标志性校样。",
+      "html": "<section class=\"ds-proof\"><header>高见编辑部 <span>校样 01</span></header><strong>见</strong><em>选题编校完成</em></section>",
+      "css": ".ds-proof{position:relative;width:250px;min-height:190px;padding:14px;background:#fbf8f0;color:#12110f;box-shadow:14px 18px 36px rgba(0,0,0,.34);transform:rotate(-1.2deg)}.ds-proof header{display:flex;justify-content:space-between;padding-bottom:8px;border-bottom:3px solid #12110f;font:850 8px/1.4 sans-serif}.ds-proof strong{position:absolute;right:14px;top:42px;display:grid;width:78px;height:100px;place-items:center;background:#a3152c;color:white;font:850 54px/1 serif}.ds-proof em{position:absolute;right:12px;bottom:11px;padding:6px 8px;border:2px solid #a3152c;color:#a3152c;font:900 9px/1.4 sans-serif;font-style:normal;transform:rotate(-5deg)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "财经编辑部校样",
+    "overview": "《高见》的界面像一份正在被编辑、批注和交付的先锋财经杂志。封面承担品牌冲击和产品解释，操作页回到克制、清楚的校样纸；用户感受到的是编辑判断正在成形，而不是一个抽象 AI 在表演。\n\n系统强调硬边纸张、人物摄影、中文观点标题和少量酒红批注。信息密度随任务变化：封面大胆，表单安静，结果像可带走的编辑计划。拒绝玻璃拟态、发光圆环、通用卡片阵列和连续的英文眉题。",
+    "keyCharacteristics": ["酒红、墨黑与校样纸白的受限色盘", "中文宋体表达观点，中文黑体承担操作", "方角、细线、页码和硬边纸张", "封面大胆，工作页克制，结果页可读", "可跟手的纸张右滑翻页是唯一标志性动效"],
+    "rules": [
+      { "name": "The One Red Rule", "body": "酒红用于决定与批注，不把每个容器都染红；同一屏只有一个主要红色动作。", "section": "colors" },
+      { "name": "The Chinese-First Rule", "body": "所有关键任务、状态和动作必须先用中文说清楚；装饰性英文不能替代中文标签。", "section": "typography" },
+      { "name": "The Moving Paper Rule", "body": "只有正在被翻动或被拿起的纸张获得阴影，静止内容依靠色面、线条和留白分层。", "section": "elevation" }
+    ],
+    "dos": ["Do 让第一次进入页面的人在数秒内看懂“高管 IP 公众号选题生成器”。", "Do 先保证中文标题、正文和长内容在 360px 手机上可读。", "Do 把酒红留给决定、批注和完成状态。", "Do 让翻页、焦点、滚动条、光标与选中态都属于同一套视觉语言。"],
+    "donts": ["Don't 使用发光 AI 圆环、渐变文字、玻璃卡片或通用图标卡阵列。", "Don't 让英文眉题承担中文用户必须理解的信息。", "Don't 在同一屏提供两个语义相同的“下一步”动作。", "Don't 让固定导航遮住正文、表单动作或可编辑结果。"]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "asset": "founder-cover.png",
+  "type": "pre-existing-ai-generated-raster",
+  "usage": "unused legacy cover asset retained for project history",
+  "origin": "created during an earlier design pass in this project",
+  "prompt": null,
+  "note": "The original generation prompt was not retained. This file is not referenced by the shipping interface."
+}

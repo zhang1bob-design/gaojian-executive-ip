@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#64131d" />
     <meta
       name="description"
-      content="高见——面向公关与品牌团队的高管 IP 公众号选题生成器。"
+      content="高见，一款面向公关与品牌团队的高管 IP 公众号选题生成器。"
     />
     <title>高见｜高管 IP 公众号选题生成器</title>
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
@@ -20,39 +20,32 @@
 
       <nav class="top-rail" aria-label="杂志导航">
         <button id="brand-home" class="wordmark" type="button" aria-label="返回封面">高见</button>
-        <div class="issue-mark">EXECUTIVE VOICE · ISSUE 01</div>
+        <div class="issue-mark">高管 IP · 公众号内容策略</div>
         <div id="page-count" class="page-count" aria-live="polite">01 / 06</div>
       </nav>
 
-      <div id="book" class="book" aria-live="polite">
+      <div id="book" class="book">
         <section class="page page-cover is-active" data-page="0" aria-label="高见封面">
           <img
             class="cover-art"
-            src="assets/founder-cover-v2.png"
-            alt="酒红色影棚背景中的虚构科技公司创始人"
+            src="assets/founder-cover-v3.png"
+            alt="深色影棚中的虚构科技公司创始人近景肖像"
           />
           <div class="cover-shade" aria-hidden="true"></div>
           <div class="cover-masthead">高见</div>
-          <p class="cover-subhead">EXECUTIVE IP × WECHAT EDITORIAL</p>
+          <p class="cover-subhead" aria-hidden="true">EXECUTIVE VOICE</p>
           <div class="cover-copy">
-            <p class="cover-index">FOR PR &amp; BRAND TEAMS / 2026</p>
             <p class="cover-product">高管 IP 公众号选题生成器</p>
-            <h1>把高管的判断，<br />变成值得传播的内容。</h1>
-            <p class="cover-deck">输入履历、行业观点与业务目标，生成高管 IP 定位及可直接使用的公众号选题。</p>
-          </div>
-          <div class="cover-lines">
-            <span><b>01</b> IP 定位</span>
-            <span><b>02</b> 记忆标签</span>
-            <span><b>03</b> 三天选题</span>
+            <h1>高见，<br />值得被看见。</h1>
+            <p class="cover-deck">把履历、判断与经验，变成持续的公众影响力。</p>
           </div>
           <button class="swipe-cue" type="button" data-next>
-            <span>开始生成公众号选题</span>
-            <svg viewBox="0 0 48 16" aria-hidden="true"><path d="M1 8h43M37 2l7 6-7 6" /></svg>
+            翻开本期
           </button>
         </section>
 
         <section class="page page-form page-paper" data-page="1" aria-label="人物档案">
-          <div class="page-rule"><span>STEP 01 / PROFILE</span><span>填写高管信息</span><span>02</span></div>
+          <div class="page-rule"><span>人物信息</span><span>填写高管档案</span><span>02</span></div>
           <div class="editorial-heading">
             <p>提炼高管 IP 的第一步，<br />是找到最值得被记住的经历。</p>
             <h2>高管档案</h2>
@@ -83,31 +76,29 @@
 
           <div class="page-actions">
             <button id="load-example" class="link-action" type="button">载入示例档案</button>
-            <button class="next-action" type="button" data-validate="profile-form" data-goto="2">
-              下一页 <span>→</span>
-            </button>
+            <button class="next-action" type="button" data-validate="profile-form" data-goto="2">下一页</button>
           </div>
         </section>
 
-        <section class="page page-form page-red" data-page="2" aria-label="传播任务">
-          <div class="page-rule rule-light"><span>STEP 02 / BRIEF</span><span>定义公众号内容任务</span><span>03</span></div>
-          <div class="editorial-heading heading-light">
+        <section class="page page-form page-paper page-brief" data-page="2" aria-label="传播任务">
+          <div class="page-rule"><span>传播任务</span><span>定义公众号内容方向</span><span>03</span></div>
+          <div class="editorial-heading">
             <p>告诉我们要影响谁、<br />希望建立怎样的行业认知。</p>
             <h2>内容任务</h2>
           </div>
 
           <form id="brief-form" class="form-grid form-grid-compact" novalidate>
-            <label class="field field-inverse field-short">
+            <label class="field field-short">
               <span class="field-no">04</span>
               <span class="field-label">行业信息</span>
               <input name="industry" type="text" placeholder="例如：人工智能 / 企业服务" required />
             </label>
-            <label class="field field-inverse field-short">
+            <label class="field field-short">
               <span class="field-no">05</span>
               <span class="field-label">业务目标</span>
               <input name="goal" type="text" placeholder="例如：建立行业影响力" required />
             </label>
-            <label class="field field-inverse field-wide">
+            <label class="field field-wide">
               <span class="field-no">06</span>
               <span class="field-label">行业个人观点</span>
               <textarea
@@ -117,31 +108,29 @@
                 required
               ></textarea>
             </label>
-            <label class="field field-inverse field-wide">
+            <label class="field field-wide">
               <span class="field-no">07</span>
               <span class="field-label">目标受众</span>
               <input name="audience" type="text" placeholder="例如：企业管理者、创业者与投资人" required />
             </label>
           </form>
 
-          <div class="page-actions actions-light">
+          <div class="page-actions">
             <button class="link-action" type="button" data-goto="1">返回修改</button>
-            <button id="generate-button" class="next-action action-ivory" type="button">
-              生成高见 <span>↗</span>
-            </button>
+            <button id="generate-button" class="next-action" type="button">生成公众号选题</button>
           </div>
         </section>
 
         <section class="page page-process page-ink" data-page="3" aria-label="策略生成过程">
-          <div class="page-rule rule-light"><span>PROCESS</span><span>策略生成</span><span>04</span></div>
+          <div class="page-rule rule-light"><span>选题编校</span><span>生成内容策略</span><span>04</span></div>
           <div class="process-stage">
-            <p class="process-overline">BUILDING AN EXECUTIVE VOICE</p>
             <h2>让履历成为观点，<br />让观点成为影响力。</h2>
-            <div class="signal-orbit" aria-hidden="true">
-              <div class="orbit orbit-a"></div>
-              <div class="orbit orbit-b"></div>
-              <div class="orbit orbit-c"></div>
-              <span>见</span>
+            <p class="process-note">《高见》正在把人物素材编校成可发布的公众号内容。</p>
+            <div class="editorial-proof" aria-hidden="true">
+              <div class="proof-meta"><span>高见编辑部</span><span>校样 01</span></div>
+              <div class="proof-subject"><span>高管内容</span><strong>见</strong></div>
+              <div class="proof-lines"><i></i><i></i><i></i></div>
+              <div class="proof-stamp">选题编校中</div>
             </div>
             <ol id="process-list" class="process-list">
               <li class="is-running"><span>01</span>提炼人物资产</li>
@@ -149,16 +138,14 @@
               <li><span>03</span>构建内容方向</li>
             </ol>
           </div>
-          <button id="view-result" class="result-action" type="button" hidden>
-            查看策略结果 <span>→</span>
-          </button>
+          <button id="view-result" class="result-action" type="button" hidden>查看策略结果</button>
         </section>
 
         <section class="page page-result page-paper" data-page="4" aria-label="高管 IP 定位结果">
-          <div class="page-rule"><span>POSITIONING</span><span>高管 IP 定位方案</span><span>05</span></div>
+          <div class="page-rule"><span>人物定位</span><span>高管 IP 内容策略</span><span>05</span></div>
           <div class="result-lead">
-            <p><span id="result-person">—</span> / EXECUTIVE VOICE</p>
-            <h2 id="positioning" contenteditable="true" spellcheck="false">—</h2>
+            <p><span id="result-person">待生成</span> / 高管内容定位</p>
+            <h2 id="positioning" contenteditable="true" role="textbox" aria-label="一句话 IP 定位，可直接编辑" spellcheck="false">待生成</h2>
           </div>
 
           <section class="result-block tag-block">
@@ -181,9 +168,9 @@
         </section>
 
         <section class="page page-topics page-paper" data-page="5" aria-label="三天公众号选题">
-          <div class="page-rule"><span>WECHAT EDITORIAL PLAN</span><span>公众号三天选题</span><span>06</span></div>
+          <div class="page-rule"><span>公众号选题</span><span>三天内容编辑计划</span><span>06</span></div>
           <div class="topics-heading">
-            <h2>三天公众号选题，<br />建立高管的内容辨识度。</h2>
+            <h2>三天公众号选题，建立高管的内容辨识度。</h2>
             <p>每个选题包含传播角度、开篇 Hook 与三点写作大纲。</p>
           </div>
           <div id="topic-list" class="topic-list"></div>
@@ -198,9 +185,9 @@
       </div>
 
       <div class="bottom-rail" aria-label="页面控制">
-        <button id="prev-page" type="button" aria-label="上一页">←</button>
+        <button id="prev-page" type="button" aria-label="上一页"><span class="nav-label">上一页</span></button>
         <div class="progress-track" aria-hidden="true"><i id="progress-bar"></i></div>
-        <button id="next-page" type="button" aria-label="下一页">→</button>
+        <button id="next-page" type="button" aria-label="下一页"><span class="nav-label">下一页</span></button>
       </div>
     </main>
 
