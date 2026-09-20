@@ -45,31 +45,28 @@
         </section>
 
         <section class="page page-form page-paper" data-page="1" aria-label="人物档案">
-          <div class="page-rule"><span>人物信息</span><span>填写高管档案</span><span>02</span></div>
-          <div class="editorial-heading">
-            <p>提炼高管 IP 的第一步，<br />是找到最值得被记住的经历。</p>
-            <h2>高管档案</h2>
+          <div class="section-mark"><span>人物档案</span><span>02</span></div>
+          <div class="editorial-heading profile-heading">
+            <h2>先把人<br />写清楚。</h2>
+            <p>从职位与履历中，找到这位高管最值得被记住的部分。</p>
           </div>
 
           <form id="profile-form" class="form-grid" novalidate>
             <label class="field field-short">
-              <span class="field-no">01</span>
               <span class="field-label">高管姓名</span>
-              <input name="name" type="text" placeholder="例如：周屿" autocomplete="name" required />
+              <input name="name" type="text" placeholder="例如：周屿" autocomplete="name" aria-required="true" />
             </label>
             <label class="field field-short">
-              <span class="field-no">02</span>
               <span class="field-label">现任职位</span>
-              <input name="role" type="text" placeholder="例如：科技公司创始人" required />
+              <input name="role" type="text" placeholder="例如：科技公司创始人" aria-required="true" />
             </label>
             <label class="field field-wide">
-              <span class="field-no">03</span>
               <span class="field-label">个人履历</span>
               <textarea
                 name="resume"
                 rows="5"
                 placeholder="用两三句话写下最值得被记住的经历与成绩。"
-                required
+                aria-required="true"
               ></textarea>
             </label>
           </form>
@@ -81,37 +78,33 @@
         </section>
 
         <section class="page page-form page-paper page-brief" data-page="2" aria-label="传播任务">
-          <div class="page-rule"><span>传播任务</span><span>定义公众号内容方向</span><span>03</span></div>
-          <div class="editorial-heading">
-            <p>告诉我们要影响谁、<br />希望建立怎样的行业认知。</p>
-            <h2>内容任务</h2>
+          <div class="section-mark"><span>内容任务</span><span>03</span></div>
+          <div class="editorial-heading brief-heading">
+            <h2>让观点<br />有方向。</h2>
+            <p>明确行业、目标和受众，决定这位高管应该持续谈论什么。</p>
           </div>
 
           <form id="brief-form" class="form-grid form-grid-compact" novalidate>
             <label class="field field-short">
-              <span class="field-no">04</span>
               <span class="field-label">行业信息</span>
-              <input name="industry" type="text" placeholder="例如：人工智能 / 企业服务" required />
+              <input name="industry" type="text" placeholder="例如：人工智能 / 企业服务" aria-required="true" />
             </label>
             <label class="field field-short">
-              <span class="field-no">05</span>
               <span class="field-label">业务目标</span>
-              <input name="goal" type="text" placeholder="例如：建立行业影响力" required />
+              <input name="goal" type="text" placeholder="例如：建立行业影响力" aria-required="true" />
             </label>
-            <label class="field field-wide">
-              <span class="field-no">06</span>
+            <label class="field field-wide field-feature">
               <span class="field-label">行业个人观点</span>
               <textarea
                 name="viewpoint"
                 rows="4"
                 placeholder="写下一句最能代表这位高管判断力的观点。"
-                required
+                aria-required="true"
               ></textarea>
             </label>
             <label class="field field-wide">
-              <span class="field-no">07</span>
               <span class="field-label">目标受众</span>
-              <input name="audience" type="text" placeholder="例如：企业管理者、创业者与投资人" required />
+              <input name="audience" type="text" placeholder="例如：企业管理者、创业者与投资人" aria-required="true" />
             </label>
           </form>
 
@@ -122,39 +115,44 @@
         </section>
 
         <section class="page page-process page-ink" data-page="3" aria-label="策略生成过程">
-          <div class="page-rule rule-light"><span>选题编校</span><span>生成内容策略</span><span>04</span></div>
+          <div class="section-mark section-mark-light"><span>编辑台</span><span>04</span></div>
           <div class="process-stage">
-            <h2>让履历成为观点，<br />让观点成为影响力。</h2>
-            <p class="process-note">《高见》正在把人物素材编校成可发布的公众号内容。</p>
+            <div class="process-copy">
+              <h2>人物材料，<br />正在成为判断。</h2>
+              <p class="process-note">《高见》编辑部正在整理履历、观点与传播目标。</p>
+            </div>
             <div class="editorial-proof" aria-hidden="true">
-              <div class="proof-meta"><span>高见编辑部</span><span>校样 01</span></div>
-              <div class="proof-subject"><span>高管内容</span><strong>见</strong></div>
-              <div class="proof-lines"><i></i><i></i><i></i></div>
+              <div class="proof-meta"><span>高见编辑部</span><span>人物特刊</span></div>
+              <div class="proof-draft">
+                <span>高管介绍</span>
+                <strong>观点先行</strong>
+                <i></i><i></i><i></i>
+              </div>
               <div class="proof-stamp">选题编校中</div>
             </div>
             <ol id="process-list" class="process-list">
-              <li class="is-running"><span>01</span>提炼人物资产</li>
-              <li><span>02</span>识别观点锋芒</li>
-              <li><span>03</span>构建内容方向</li>
+              <li class="is-running"><span>提炼人物资产</span><b>整理</b></li>
+              <li><span>识别观点锋芒</span><b>等待</b></li>
+              <li><span>构建内容方向</span><b>等待</b></li>
             </ol>
           </div>
           <button id="view-result" class="result-action" type="button" hidden>查看策略结果</button>
         </section>
 
         <section class="page page-result page-paper" data-page="4" aria-label="高管 IP 定位结果">
-          <div class="page-rule"><span>人物定位</span><span>高管 IP 内容策略</span><span>05</span></div>
+          <div class="section-mark"><span>人物定位</span><span>05</span></div>
           <div class="result-lead">
-            <p><span id="result-person">待生成</span> / 高管内容定位</p>
+            <p id="result-person">待生成</p>
             <h2 id="positioning" contenteditable="true" role="textbox" aria-label="一句话 IP 定位，可直接编辑" spellcheck="false">待生成</h2>
           </div>
 
           <section class="result-block tag-block">
-            <div class="block-title"><span>01</span><h3>三个记忆标签</h3></div>
+            <div class="block-title"><h3>三个记忆标签</h3><span>记住这个人</span></div>
             <div id="memory-tags" class="memory-tags"></div>
           </section>
 
           <section class="result-block direction-block">
-            <div class="block-title"><span>02</span><h3>三个长期内容方向</h3></div>
+            <div class="block-title"><h3>三个长期内容方向</h3><span>持续谈什么</span></div>
             <ol id="content-directions" class="direction-list"></ol>
           </section>
 
@@ -168,10 +166,10 @@
         </section>
 
         <section class="page page-topics page-paper" data-page="5" aria-label="三天公众号选题">
-          <div class="page-rule"><span>公众号选题</span><span>三天内容编辑计划</span><span>06</span></div>
+          <div class="section-mark"><span>公众号选题</span><span>06</span></div>
           <div class="topics-heading">
-            <h2>三天公众号选题，建立高管的内容辨识度。</h2>
-            <p>每个选题包含传播角度、开篇 Hook 与三点写作大纲。</p>
+            <h2>三天，建立<br />内容辨识度。</h2>
+            <p>每个选题包含传播角度、开篇与写作大纲，可以直接修改。</p>
           </div>
           <div id="topic-list" class="topic-list"></div>
           <div class="result-footer topics-footer">

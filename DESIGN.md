@@ -1,181 +1,119 @@
 ---
 name: 高见
-description: 会工作的先锋财经杂志式高管内容工具
+description: 国际财经月刊式高管内容编辑工具
 colors:
-  oxblood: "#a3152c"
-  oxblood-deep: "#68101e"
-  paper: "#f0ece2"
-  paper-bright: "#fbf8f0"
-  ink: "#12110f"
-  ivory: "#f8f3e8"
-  muted: "#686158"
+  editorial-red: "#d71920"
+  cold-paper: "#f3f3f0"
+  paper-bright: "#ffffff"
+  ink: "#050505"
+  muted: "#6b6b68"
+  cover-red: "#a3152c"
 typography:
-  display:
-    fontFamily: "Noto Serif SC, STZhongsong, Songti SC, STSong, SimSun, serif"
-    fontSize: "clamp(2.5rem, 11vw, 4rem)"
-    fontWeight: 800
-    lineHeight: 1.05
-    letterSpacing: "-0.035em"
+  masthead:
+    fontFamily: "Source Han Serif SC, Noto Serif CJK SC, Songti SC, STSong, serif"
+    purpose: "只用于封面刊头与封面主标题"
   headline:
-    fontFamily: "Noto Serif SC, STZhongsong, Songti SC, STSong, SimSun, serif"
-    fontSize: "clamp(1.75rem, 7.4vw, 2.875rem)"
-    fontWeight: 750
-    lineHeight: 1.3
-    letterSpacing: "-0.03em"
+    fontFamily: "HarmonyOS Sans SC, MiSans, Source Han Sans SC, Noto Sans CJK SC, PingFang SC, Microsoft YaHei UI, sans-serif"
+    fontWeight: 780
+    lineHeight: 1.08
+    purpose: "内页标题、人物定位与选题标题"
   body:
-    fontFamily: "Noto Sans SC, PingFang SC, Hiragino Sans GB, Microsoft YaHei, DengXian, sans-serif"
+    fontFamily: "HarmonyOS Sans SC, MiSans, Source Han Sans SC, Noto Sans CJK SC, PingFang SC, Microsoft YaHei UI, sans-serif"
     fontSize: "15px"
-    fontWeight: 480
-    lineHeight: 1.7
-  label:
-    fontFamily: "Noto Sans SC, PingFang SC, Hiragino Sans GB, Microsoft YaHei, DengXian, sans-serif"
-    fontSize: "10px"
-    fontWeight: 800
-    lineHeight: 1.4
-    letterSpacing: "0.04em"
+    lineHeight: 1.75
 rounded:
   square: "0px"
-spacing:
-  xs: "4px"
-  sm: "8px"
-  md: "16px"
-  lg: "28px"
-  xl: "48px"
-components:
-  button-primary:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.ivory}"
-    rounded: "{rounded.square}"
-    padding: "0 16px"
-    height: "48px"
-  button-accent:
-    backgroundColor: "{colors.oxblood}"
-    textColor: "{colors.ivory}"
-    rounded: "{rounded.square}"
-    padding: "0 16px"
-    height: "50px"
-  field:
-    backgroundColor: "transparent"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.square}"
-    padding: "14px 0 18px"
-  topic-sheet:
-    backgroundColor: "{colors.paper-bright}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.square}"
-    padding: "14px 15px 17px"
+motion:
+  page-turn: "540ms cubic-bezier(.22,.78,.2,1)"
+  drag-settle: "480ms cubic-bezier(.22,.78,.2,1)"
 ---
 
 # Design System: 高见
 
 ## Overview
 
-**Creative North Star: "财经编辑部校样"**
+**Creative North Star: 国际财经月刊的编辑台**
 
-《高见》的界面像一份正在被编辑、批注和交付的先锋财经杂志。封面承担品牌冲击和产品解释，操作页回到克制、清楚的校样纸；用户感受到的是编辑判断正在成形，而不是一个抽象 AI 在表演。
+封面继续使用虚构科技创始人近景与中文刊头，承担人物权威和品牌记忆。第 2–6 页不再模拟泛黄报纸，而是一套冷静、精确的现代财经月刊编辑系统：冷白纸面、真正的黑色、鲜明编辑红和中文无衬线字体。
 
-系统强调硬边纸张、人物摄影、中文观点标题和少量酒红批注。信息密度随任务变化：封面大胆，表单安静，结果像可带走的编辑计划。拒绝玻璃拟态、发光圆环、通用卡片阵列和连续的英文眉题。
+界面依靠字号、留白、对齐和内容优先级形成气质，不依赖重复卡片、英文眉题、装饰编号或“AI 正在思考”的科技图形。
 
-**Key Characteristics:**
+## Design Principles
 
-- 酒红、墨黑与校样纸白的受限色盘
-- 中文宋体表达观点，中文黑体承担操作
-- 方角、细线、页码和硬边纸张
-- 封面大胆，工作页克制，结果页可读
-- 可跟手的纸张右滑翻页是唯一标志性动效
+### 封面与内页分工
 
-## Colors
+封面可以戏剧化，内页必须利落。封面保留宋体刊头、酒红刊签和人物摄影；操作页改用现代中文黑体与冷白纸面。两者通过刊名、页码和编辑红相连，而不是让所有页面复制封面语言。
 
-色彩来自财经刊物的封面油墨和编辑校样，酒红只用于刊头、动作和批注，纸白承担大部分阅读面积。
+### 黑体承担判断
 
-### Primary
+内页主标题、人物定位和公众号选题都使用中文黑体。宋体只保留在“高见”刊头和封面主标题中。正文不小于 15px，输入字号不小于 16px，中文标题优先使用语义短句和自然换行。
 
-- **编辑酒红:** 核心品牌色，用于刊头、主动作、批注数字和完成印章。
-- **深酒红:** 仅用于人物封面的环境底色与深色摄影衔接。
+### 一屏一个动作
 
-### Neutral
+表单页只突出“下一页”或“生成公众号选题”；生成页只突出“查看策略结果”。全局导航在存在本页主动作时隐藏重复的下一步操作。
 
-- **校样纸:** 所有操作页与固定导航的主背景。
-- **亮纸:** 封面信息校样与选题稿件的局部承载面。
-- **油墨黑:** 正文、规则线、按钮与暗色生成页。
-- **暖象牙:** 暗色表面的高对比文字。
-- **编辑灰:** 说明性正文和次要状态。
+### 内容不是卡片
 
-**The One Red Rule.** 酒红用于决定与批注，不把每个容器都染红；同一屏只有一个主要红色动作。
+人物资料用编辑字段，定位结果用大型观点排版，记忆标签用文字带，内容方向用目录，三天选题用纵向编辑清单。只有真实需要抬起的稿纸才获得阴影。
+
+## Color
+
+- **编辑红 `#d71920`**：内页唯一强调色，用于观点标题、校对状态、焦点和关键动作。
+- **冷白 `#f3f3f0`**：操作页主背景，避免暖米色带来的复古模板感。
+- **纯白 `#ffffff`**：只用于生成页上的实体稿纸。
+- **墨黑 `#050505`**：标题、正文与编辑台背景。
+- **中性灰 `#6b6b68`**：说明文字与次要标签。
+- **封面酒红 `#a3152c`**：仅保留给已确认的封面刊签和按钮。
+
+全站不使用紫蓝渐变、玻璃拟态、霓虹发光或第二强调色。
 
 ## Typography
 
-**Display Font:** Noto Serif SC，回退到华文中宋、宋体系统栈。  
-**Body Font:** Noto Sans SC，回退到苹方、微软雅黑与等线系统栈。
-
-**Character:** 高对比、重字重的中文宋体带来财经杂志的判断感；中性黑体保证表单与长文本在手机端易读。英文只作少量刊物标识，不承担信息层级。
-
-### Hierarchy
-
-- **Display:** 极少使用，只用于刊头和页面主标题；内容页最大不超过 4rem，封面刊头可放大至 6.75rem。
-- **Headline:** 用于定位与选题标题，保持严格中文换行和舒展行高。
-- **Body:** 用于输入、角度、开篇与大纲，控制在舒适的中文阅读行长。
-- **Label:** 用于页码、字段序号与编辑批注，不承担主要说明。
-
-**The Chinese-First Rule.** 所有关键任务、状态和动作必须先用中文说清楚；装饰性英文不能替代中文标签。
+- **封面刊头**：高对比中文宋体，只在封面出现。
+- **内页标题**：现代中文黑体，重字重、紧字距、短行距。
+- **正文与表单**：现代中文无衬线字体，使用中国大陆与常见设备可用的本地系统栈，不依赖境外字体 CDN。
+- **标签**：使用正常中文句式，不通过全大写英文制造层级。
 
 ## Layout
 
-移动端是基准画布。页面使用 20px 侧边距、清晰的顶部刊物栏与底部翻页栏；内容页为独立可滚动纸张，并为固定控制保留足够底部空间。宽屏把整份杂志限制在 1180px 内，表单和结果内容限制在 920px 内。
+移动端使用 20px 页面边距。桌面端杂志外框最大 1180px，核心内容最大 920px。字段通过下划线和留白分组；行业观点使用黑色整版区块，明确它是传播任务的核心输入。
 
-封面采用满版极近景人物摄影：横向中文刊头覆盖头发上缘但避开双眼，主标题落在左下深色区域，唯一主动作位于底部拇指区。桌面选题使用“一篇主稿 + 两篇侧稿”，手机端回到单列。
+人物定位页以一句话观点为主视觉，标签和内容方向依次展开。选题页保持单一纵向信息流；桌面端每个选题内部采用标题与正文的非对称双栏，不把三天内容做成三张等宽卡片。
 
-## Elevation & Depth
+## Motion
 
-系统默认平面化，以纸张叠放而非圆角卡片表达层级。阴影只出现在封面校样、生成校样和翻页中的活动纸张，必须同时有偏移与柔和模糊；静止操作面不使用装饰性阴影。
+向下一页时，当前纸张跟随手势向右离场，下一页静止在下方。纸张以右侧为变换基点，左侧出现折页阴影；返回上一页时方向相反。禁止淡入淡出、缩放和双页同时平移。
 
-**The Moving Paper Rule.** 只有正在被翻动或被拿起的纸张获得阴影，静止内容依靠色面、线条和留白分层。
+触摸位移超过页面宽度 22% 时完成翻页，否则回弹。减少动态效果偏好下取消过程动画并立即完成切换。
 
-## Shapes
+## Validation
 
-所有主要表面与控件保持方角。边界由 1px 编辑线、4–5px 章节规则和硬边色块构成；不使用胶囊按钮、圆角卡片或有机几何遮罩。人物保持原始摄影轮廓，不用 CSS 图形替代抠图。
+不调用浏览器原生 `reportValidity()`，也不出现“请填写此字段”气泡。空字段只显示 2px 编辑红底线，并聚焦第一个空字段，不添加错误文案或 Toast。
 
 ## Components
 
-### Buttons
+### Fields
 
-- **Shape:** 硬边矩形，最小触控高度 44px。
-- **Primary:** 油墨黑底配暖象牙文字；生成完成等关键状态可使用编辑酒红。
-- **Hover / Focus:** 悬停只轻微降低亮度；键盘焦点使用 3px 高对比轮廓，暗色页切换为暖象牙色。
-
-### Cards / Containers
-
-- **Corner Style:** 方角。
-- **Background:** 校样纸或亮纸。
-- **Shadow Strategy:** 静止卡片无阴影；校样和翻动纸张使用结构性柔影。
-- **Border:** 选题稿件以顶部粗规则线标记，不套完整边框。
-
-### Inputs / Fields
-
-- **Style:** 透明背景、顶部细规则线、字段序号与中文标签并置。
-- **Focus:** 顶部规则线转为编辑酒红并加粗。
-- **Placeholder:** 使用可读的编辑灰，不依赖低透明度。
-
-### Navigation
-
-顶部显示刊名、产品任务与页码；底部显示上一页、进度和下一页。拥有本页主要动作时隐藏重复的全局下一页；封面只保留一个主动作。
+透明背景、底部规则线、11px 标签和 17–20px 输入内容。聚焦或无值时只改变底线。行业观点字段使用墨黑底与白字，形成唯一的表单主视觉。
 
 ### Editorial Proof
 
-生成过程使用略微旋转的纸质校样、正文规则线与酒红完成印章。完成后动画停止，文案从“选题编校中”明确变为“选题编校完成”。
+黑色编辑台上放置一张纯白稿纸，包含删除线、改写标题、正文规则线和编辑红校对章。它表达编辑判断正在形成，不模拟 AI 光圈或粒子。
 
-## Do's and Don'ts
+### Results
 
-### Do:
+一句话定位使用大号黑体和粗底线。三个记忆标签是大字号文字行，三个内容方向是可编辑目录。三天选题使用 DAY 侧标、标题、角度、开篇和大纲的纵向编辑结构。
 
-- **Do** 让第一次进入页面的人在数秒内看懂“高管 IP 公众号选题生成器”。
-- **Do** 先保证中文标题、正文和长内容在 360px 手机上可读。
-- **Do** 把酒红留给决定、批注和完成状态。
-- **Do** 让翻页、焦点、滚动条、光标与选中态都属于同一套视觉语言。
+## Do
 
-### Don't:
+- 用黑体、留白和内容层级制造权威感。
+- 保留封面的视觉资产与品牌记忆。
+- 让所有输入、结果和长文本在 360px 手机上可读。
+- 让按钮、焦点、校对状态和翻页阴影属于同一套编辑语言。
 
-- **Don't** 使用发光 AI 圆环、渐变文字、玻璃卡片或通用图标卡阵列。
-- **Don't** 让英文眉题承担中文用户必须理解的信息。
-- **Don't** 在同一屏提供两个语义相同的“下一步”动作。
-- **Don't** 让固定导航遮住正文、表单动作或可编辑结果。
+## Don't
+
+- 不把所有页面做成同一种“横线 + 编号 + 宋体标题”。
+- 不使用三张等宽卡片、胶囊标签、AI 光圈或英文装饰条。
+- 不用暖米色、棕红和全站宋体模拟高级感。
+- 不让固定导航遮住主要动作或正文。

@@ -97,7 +97,7 @@ function goToPage(index) {
   window.clearTimeout(pageTurnTimer);
   pageTurnTimer = window.setTimeout(() => {
     pages[previous].classList.remove("was-active");
-  }, 760);
+  }, 580);
 }
 
 function updateChrome() {
@@ -121,11 +121,29 @@ function updatePageAccessibility() {
   });
 }
 
+function validateForm(form) {
+  form.querySelectorAll(".field.is-invalid").forEach((field) => field.classList.remove("is-invalid"));
+  const emptyField = [...form.querySelectorAll("[aria-required='true']")]
+    .find((field) => !field.value.trim());
+
+  if (!emptyField) return true;
+
+  emptyField.closest(".field")?.classList.add("is-invalid");
+  emptyField.focus({ preventScroll: false });
+  return false;
+}
+
 function validateAndGo(formId, target) {
   const form = document.querySelector(`#${formId}`);
-  if (!form.reportValidity()) return;
+  if (!validateForm(form)) return;
   goToPage(target);
 }
+
+[profileForm, briefForm].forEach((form) => {
+  form.addEventListener("input", (event) => {
+    event.target.closest(".field")?.classList.remove("is-invalid");
+  });
+});
 
 document.querySelectorAll("[data-goto]").forEach((button) => {
   button.addEventListener("click", () => {
@@ -187,7 +205,7 @@ document.querySelector("#book").addEventListener("touchmove", (event) => {
   event.preventDefault();
   const width = document.querySelector("#book").clientWidth;
   const progress = Math.min(1, Math.abs(deltaX) / width);
-  const rotation = swipeDirection > 0 ? -4 * progress : 4 * progress;
+  const rotation = swipeDirection > 0 ? 8 * progress : -8 * progress;
   draggedPage.style.transform = `translate3d(${deltaX}px, 0, 0) rotateY(${rotation}deg)`;
 }, { passive: false });
 
@@ -203,7 +221,7 @@ function finishSwipe() {
   const target = currentPage + swipeDirection;
 
   outgoing.classList.remove("is-dragging");
-  outgoing.style.transition = "transform .42s var(--ease-page)";
+  outgoing.style.transition = "transform .48s var(--ease-page)";
 
   const didTurn = shouldTurn && (swipeDirection > 0 ? advanceFromSwipe() : (goToPage(target), true));
 
@@ -220,7 +238,7 @@ function finishSwipe() {
     outgoing.style.transition = "";
     outgoing.style.transform = "";
     if (!didTurn) outgoing.classList.add("is-active");
-  }, 460);
+  }, 510);
 
   draggedPage = null;
   peekedPage = null;
@@ -229,12 +247,12 @@ function finishSwipe() {
 
 function advanceFromSwipe() {
   if (currentPage === 1) {
-    if (!profileForm.reportValidity()) return false;
+    if (!validateForm(profileForm)) return false;
     goToPage(2);
     return true;
   }
   if (currentPage === 2) {
-    if (!profileForm.reportValidity() || !briefForm.reportValidity()) return false;
+    if (!validateForm(profileForm) || !validateForm(briefForm)) return false;
     runGeneration();
     return true;
   }
@@ -252,7 +270,7 @@ document.querySelector("#load-example").addEventListener("click", () => {
 });
 
 document.querySelector("#generate-button").addEventListener("click", () => {
-  if (!profileForm.reportValidity() || !briefForm.reportValidity()) return;
+  if (!validateForm(profileForm) || !validateForm(briefForm)) return;
   runGeneration();
 });
 
@@ -265,6 +283,7 @@ async function runGeneration() {
   viewResultButton.hidden = true;
   processItems.forEach((item, index) => {
     item.classList.remove("is-running", "is-done");
+    item.querySelector("b").textContent = index === 0 ? "整理" : "等待";
     if (index === 0) item.classList.add("is-running");
   });
 
@@ -273,7 +292,11 @@ async function runGeneration() {
     await wait(520);
     processItems[index].classList.remove("is-running");
     processItems[index].classList.add("is-done");
-    if (processItems[index + 1]) processItems[index + 1].classList.add("is-running");
+    processItems[index].querySelector("b").textContent = "完成";
+    if (processItems[index + 1]) {
+      processItems[index + 1].classList.add("is-running");
+      processItems[index + 1].querySelector("b").textContent = "整理";
+    }
   }
   strategy = buildStrategy(data);
   renderAll();
